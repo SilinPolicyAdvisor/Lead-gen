@@ -23,7 +23,16 @@ A Python-based automation tool that uses the Google Places API to extract busine
 pip install -r requirements.txt
 ```
 
-3. **Verify your API key** in `config.py` (already set to your key)
+3. **Set up your Google Places API key**:
+   - Get your API key from [Google Cloud Console](https://console.developers.google.com/apis/credentials)
+   - Copy `.env.example` to `.env`:
+     ```bash
+     cp .env.example .env
+     ```
+   - Edit `.env` and replace `your_google_places_api_key_here` with your actual API key:
+     ```bash
+     GOOGLE_API_KEY=your_actual_api_key_here
+     ```
 
 ## Quick Start
 

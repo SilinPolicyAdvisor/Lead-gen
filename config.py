@@ -1,8 +1,18 @@
 import os
 from typing import List, Dict
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Google Places API Configuration
-GOOGLE_API_KEY = "AIzaSyC40IF3ruBEru0canZ16_YxnUROjijWwdM"
+GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+
+if not GOOGLE_API_KEY:
+    raise ValueError(
+        "GOOGLE_API_KEY environment variable is required. "
+        "Please set it in your .env file or environment variables."
+    )
 
 # Rate limiting settings
 REQUEST_DELAY_MIN = 0.5  # Minimum delay between requests (seconds)
