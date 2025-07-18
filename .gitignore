@@ -1,0 +1,40 @@
+# Virtual environments
+lead_scraper_env/
+venv/
+env/
+.env
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+scraper.log
+
+# Output files
+output/
+test_output/
+
+# API keys (if stored in files)
+.env
+api_keys.txt
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# pytest cache
+.pytest_cache/ 
