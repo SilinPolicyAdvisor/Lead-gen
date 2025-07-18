@@ -272,8 +272,7 @@ Examples:
     
     parser.add_argument(
         '--api-key',
-        default=config.GOOGLE_API_KEY,
-        help='Google Places API key (or set in config.py)'
+        help='Google Places API key (defaults to environment variable)'
     )
     
     parser.add_argument(
@@ -307,16 +306,17 @@ Examples:
     if args.verbose:
         logging.getLogger().setLevel(logging.DEBUG)
     
-    # Validate API key
-    if not args.api_key:
+    # Validate API key - use command line arg or fall back to environment
+    api_key = args.api_key or config.GOOGLE_API_KEY
+    if not api_key:
         print("Error: Google Places API key is required")
-        print("Set it in config.py or use --api-key argument")
+        print("Set it in your .env file or use --api-key argument")
         sys.exit(1)
     
     # Create and run scraper
     try:
         scraper = LeadScraper(
-            api_key=args.api_key,
+            api_key=api_key,
             output_dir=args.output_dir,
             max_workers=args.max_workers
         )
