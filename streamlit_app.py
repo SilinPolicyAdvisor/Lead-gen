@@ -93,17 +93,29 @@ def main():
         
         # API Key section
         st.subheader("🔑 API Settings")
-        api_key = st.text_input(
-            "Google Places API Key",
-            value=config.GOOGLE_API_KEY,
-            type="password",
-            help="Your Google Places API key"
-        )
         
-        if api_key:
-            st.success("✅ API Key configured")
+        # Check if API key is configured in environment
+        if config.GOOGLE_API_KEY:
+            st.success("✅ API Key configured from environment")
+            api_key = config.GOOGLE_API_KEY  # Use the env API key
+            
+            # Option to override with custom key
+            use_custom_key = st.checkbox("Use custom API key", value=False)
+            if use_custom_key:
+                api_key = st.text_input(
+                    "Custom Google Places API Key",
+                    type="password",
+                    help="Override the environment API key"
+                )
+                if not api_key:
+                    api_key = config.GOOGLE_API_KEY  # Fallback to env key
         else:
-            st.error("❌ API Key required")
+            st.error("❌ API Key not found in environment")
+            api_key = st.text_input(
+                "Google Places API Key",
+                type="password",
+                help="Enter your Google Places API key"
+            )
         
         st.divider()
         
